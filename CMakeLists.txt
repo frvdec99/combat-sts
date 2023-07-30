@@ -3,4 +3,11 @@ project(combat_sts)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(combat_sts main.cpp)
+include_directories(include)
+
+add_executable(combat_sts main.cpp
+        include/Monster.h
+        src/Monster.cpp
+        include/Random.h
+        include/State.h
+        src/State.cpp)
