@@ -10,4 +10,6 @@ add_executable(combat_sts main.cpp
         src/Monster.cpp
         include/Random.h
         include/State.h
-        src/State.cpp)
+        src/State.cpp
+        include/base/Card.h
+        include/base/Relic.h)
