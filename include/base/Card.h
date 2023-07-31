@@ -7,12 +7,12 @@
 
 namespace sts {
     enum class CardId : unsigned short {
-        INVALID = 0,
-        STRIKE,
-        DEFEND,
-        NEUTRALIZE,
-        SURVIVOR,
-        ASCENDERSBANE,
+        Invalid = 0,
+        Strike,
+        Defend,
+        Neutralize,
+        Survivor,
+        AscendersBane,
     };
 
     static constexpr const char* cardEnumStrings[] = {
@@ -22,6 +22,14 @@ namespace sts {
             "Neutralize",
             "Survivor",
             "AscendersBane",
+    };
+
+    class Card {
+    public:
+        CardId id;
+
+        Card() { id = CardId::Invalid; }
+        explicit Card(CardId id) { this->id = id; }
     };
 }
 

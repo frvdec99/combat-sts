@@ -7,12 +7,25 @@
 
 namespace sts {
     enum class RelicId : unsigned short {
-        INVALID = 0,
-        RINGOFTHESNAKE,
+        Invalid = 0,
+        RingOfTheSnake,
     };
 
     static constexpr const char* RelicEnumStrings[] = {
+            "Invalid",
             "RingOfTheSnake",
+    };
+
+    class Relic {
+    public:
+        RelicId id;
+        unsigned short count;
+
+        Relic() { id = RelicId::Invalid; count = 0; }
+        explicit Relic(RelicId id, unsigned short count = 0) {
+            this->id = id;
+            this->count = count;
+        }
     };
 }
 
