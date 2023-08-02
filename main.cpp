@@ -1,8 +1,11 @@
 #include <iostream>
-#include "base/Random.h"
-#include "GameState.h"
+#include "game/GameState.h"
+
+using namespace StS;
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    uint64_t seed = 0;
+    GameState gs(Character::SILENT, seed, 20);
+    std::cout << gs;
     return 0;
 }

@@ -5,31 +5,20 @@
 #ifndef COMBAT_STS_CARD_H
 #define COMBAT_STS_CARD_H
 
-namespace sts {
-    enum class CardId : unsigned short {
-        Invalid = 0,
-        Strike,
-        Defend,
-        Neutralize,
-        Survivor,
-        AscendersBane,
-    };
+#include "const/Cards.h"
 
-    static constexpr const char* cardEnumStrings[] = {
-            "Invalid",
-            "Strike",
-            "Defend",
-            "Neutralize",
-            "Survivor",
-            "AscendersBane",
-    };
+namespace StS {
 
     class Card {
     public:
         CardId id;
+        bool upgrade;
 
-        Card() { id = CardId::Invalid; }
-        explicit Card(CardId id) { this->id = id; }
+        Card() { id = CardId::INVALID; upgrade = false; }
+        explicit Card(const CardId& id, bool upgrade = false) {
+            this->id = id;
+            this->upgrade = upgrade;
+        }
     };
 }
 

@@ -6,15 +6,12 @@
 #define COMBAT_STS_COMBATCONTEXT_H
 
 #include <deque>
-#include "GameState.h"
+#include "game/GameState.h"
 
-namespace sts {
+namespace StS {
     class CombatState {
     public:
-        std::deque<Card> drawOrder;
-        std::deque<Card> foldOrder;
-        CardId current[10];
-        unsigned short turn;
+
     };
 }
 

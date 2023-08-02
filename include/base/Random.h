@@ -62,7 +62,7 @@ namespace java {
 }
 
 
-namespace sts {
+namespace StS {
 
     class Random {
     public:

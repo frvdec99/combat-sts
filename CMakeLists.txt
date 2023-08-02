@@ -6,10 +6,6 @@ set(CMAKE_CXX_STANDARD 17)
 include_directories(include)
 
 add_executable(combat_sts main.cpp
-        include/base/Monster.h
-        src/base/Monster.cpp
-        include/base/Random.h
-        include/GameState.h
-        src/State.cpp
-        include/base/Card.h
-        include/base/Relic.h)
+        src/game/CardContainer.cpp
+        src/game/GameState.cpp
+        src/game/RelicContainer.cpp)
