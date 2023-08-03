@@ -18,7 +18,8 @@ namespace StS {
 
         static MonsterId getLouse(Random &miscRng);
 
-        void init(Random& monsterHpRng, Random& miscRng, int ascension, const MonsterEncounter& encounter);
+        void init(Random& monsterHpRng, Random& miscRng, Random& aiRng,
+                  int ascension, const MonsterEncounter& encounter);
         void createMonster(Random& monsterHpRng, int ascension, const MonsterId& id);
         void createMonsters(Random& monsterHpRng, Random& miscRng, int ascension, const MonsterEncounter& encounter);
     };

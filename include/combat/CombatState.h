@@ -18,6 +18,7 @@ namespace StS {
         int ascension = 0;
         int floorNumber = 0;
 
+        Random aiRng; // Monster AI
         Random monsterHpRng;
         Random cardRng;
         Random shuffleRng;

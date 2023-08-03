@@ -10,8 +10,8 @@
 namespace StS {
     class Player {
     public:
-        Character character;
-        int gold;
+        Character character = Character::INVALID;
+        int gold = 99;
         int curHp = 80;
         int maxHp = 80;
         int energy = 0;

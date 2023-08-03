@@ -7,6 +7,7 @@
 
 #include <cassert>
 #include "const/Monsters.h"
+#include "const/MonsterMoves.h"
 #include "base/Random.h"
 
 namespace StS {
@@ -19,12 +20,26 @@ namespace StS {
         int maxHp = 0;
         int block = 0;
 
+        int miscInfo = 0;
+
+        MMID moveHistory[2] = {MMID::INVALID, MMID::INVALID };
+
         Monster() = default;
         Monster(const Monster& rhs) = default;
 
         void setRandomHp(Random& rng, bool ascension);
         void initHp(Random& rng, int ascension);
         void init(Random& monsterHpRng, int ascension, const MonsterId& monster);
+
+        void rollMove(Random& aiRng, int ascension);
+        MMID getMoveForRoll(Random& aiRng, int ascension);
+        void setMove(MMID moveId);
+
+//        void preCombatAction();
+
+        inline bool firstTurn();
+        inline bool lastMove(MMID moveId);
+        inline bool lastTwoMoves(MMID moveId);
     };
 }
 

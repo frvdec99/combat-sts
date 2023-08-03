@@ -120,5 +120,137 @@ namespace StS {
         this->id = monster;
         initHp(monsterHpRng, ascension);
     }
+
+    void Monster::rollMove(Random &aiRng, int ascension) {
+        const auto move = getMoveForRoll(aiRng, ascension);
+        setMove(move);
+    }
+
+    void Monster::setMove(MMID moveId) {
+        moveHistory[1] = moveHistory[0];
+        moveHistory[0] = moveId;
+    }
+
+    MMID Monster::getMoveForRoll(Random& aiRng, int ascension) {
+        // only for random move
+        int roll = aiRng.random(99);
+        const bool asc17 = ascension >= 17;
+        const bool asc18 = ascension >= 18;
+        const bool asc19 = ascension >= 19;
+        switch(id) {
+            case MonsterId::ACID_SLIME_S: {
+                if (!asc17 && aiRng.randomBoolean()) return (MMID::ACID_SLIME_S_TACKLE);
+                else return (MMID::ACID_SLIME_S_LICK);
+            }
+            case MonsterId::ACID_SLIME_M: {
+                // consider split
+                if (asc17) {
+                    // START ASCENSION 17
+                    if (roll < 40) {
+                        if (lastTwoMoves(MMID::ACID_SLIME_M_CORROSIVE_SPIT)) {
+                            if (aiRng.randomBoolean()) return (MMID::ACID_SLIME_M_TACKLE);
+                            else return (MMID::ACID_SLIME_M_LICK);
+                        } else return (MMID::ACID_SLIME_M_CORROSIVE_SPIT);
+
+                    } else if (roll < 80) {
+                        if (lastTwoMoves(MMID::ACID_SLIME_M_TACKLE)) {
+                            if (aiRng.randomBoolean(0.5f)) return (MMID::ACID_SLIME_M_CORROSIVE_SPIT);
+                            else return (MMID::ACID_SLIME_M_LICK);
+                        } else return (MMID::ACID_SLIME_M_TACKLE);
+
+                    } else if (lastMove(MMID::ACID_SLIME_M_LICK)) {
+                        if (aiRng.randomBoolean(0.4F)) return (MMID::ACID_SLIME_M_CORROSIVE_SPIT);
+                        else return (MMID::ACID_SLIME_M_TACKLE);
+                    } else return (MMID::ACID_SLIME_M_LICK);
+                    // END ASCENSION 17
+
+                } else if (roll < 30) {
+                    if (lastTwoMoves(MMID::ACID_SLIME_M_CORROSIVE_SPIT)) {
+                        if (aiRng.randomBoolean()) return (MMID::ACID_SLIME_M_TACKLE);
+                        else return (MMID::ACID_SLIME_M_LICK);
+                    } else return (MMID::ACID_SLIME_M_CORROSIVE_SPIT);
+
+                } else if (roll < 70) {
+                    if (lastMove(MMID::ACID_SLIME_M_TACKLE)) {
+                        if (aiRng.randomBoolean(0.4f)) return (MMID::ACID_SLIME_M_CORROSIVE_SPIT);
+                        else return (MMID::ACID_SLIME_M_LICK);
+                    } else return (MMID::ACID_SLIME_M_TACKLE);
+
+                } else if (lastTwoMoves(MMID::ACID_SLIME_M_LICK)) {
+                    if (aiRng.randomBoolean(0.4F)) return (MMID::ACID_SLIME_M_CORROSIVE_SPIT);
+                    else return (MMID::ACID_SLIME_M_TACKLE);
+                } else return (MMID::ACID_SLIME_M_LICK);
+            }
+            case MonsterId::SPIKE_SLIME_S: {
+                return (MMID::SPIKE_SLIME_S_TACKLE);
+            }
+            case MonsterId::SPIKE_SLIME_M: {
+                if (roll < 30) {
+                    if (lastTwoMoves(MMID::SPIKE_SLIME_M_FLAME_TACKLE)) return (MMID::SPIKE_SLIME_M_LICK);
+                    else return (MMID::SPIKE_SLIME_M_FLAME_TACKLE);
+
+                } else if (lastTwoMoves(MMID::SPIKE_SLIME_M_LICK) || (asc17 && lastMove(MMID::SPIKE_SLIME_M_LICK))) {
+                    return (MMID::SPIKE_SLIME_M_FLAME_TACKLE);
+                } else return (MMID::SPIKE_SLIME_M_LICK);
+            }
+            case MonsterId::CULTIST: {
+                if (firstTurn()) return (MMID::CULTIST_INCANTATION);
+                else return (MMID::CULTIST_DARK_STRIKE);
+            }
+            case MonsterId::JAW_WORM: {
+                if (firstTurn()) return (MMID::JAW_WORM_CHOMP);
+
+                if (roll < 25) {
+                    if (lastMove(MMID::JAW_WORM_CHOMP)) {
+                        if (aiRng.randomBoolean(0.5625f)) return (MMID::JAW_WORM_BELLOW);
+                        else return (MMID::JAW_WORM_THRASH);
+                    } else return (MMID::JAW_WORM_CHOMP);
+
+                } else if (roll < 55) {
+                    if (lastTwoMoves(MMID::JAW_WORM_THRASH)) {
+                        if (aiRng.randomBoolean(0.357f)) return (MMID::JAW_WORM_CHOMP);
+                        else return (MMID::JAW_WORM_BELLOW);
+                    } else return (MMID::JAW_WORM_THRASH);
+
+                } else if (lastMove(MMID::JAW_WORM_BELLOW)) {
+                    if (aiRng.randomBoolean(0.416f)) return (MMID::JAW_WORM_CHOMP);
+                    else return (MMID::JAW_WORM_THRASH);
+                } else return (MMID::JAW_WORM_BELLOW);
+            }
+            case MonsterId::RED_LOUSE: {
+                if (roll < 25) {
+                    if (lastMove(MMID::RED_LOUSE_GROW) && (asc17 || lastTwoMoves(MMID::RED_LOUSE_GROW))) return (MMID::RED_LOUSE_BITE);
+                    else  return (MMID::RED_LOUSE_GROW);
+
+                } else if (lastTwoMoves(MMID::RED_LOUSE_BITE)) return (MMID::RED_LOUSE_GROW);
+                else return (MMID::RED_LOUSE_BITE);
+            }
+            case MonsterId::GREEN_LOUSE: {
+                if (roll < 25) {
+                    if (lastMove(MMID::GREEN_LOUSE_SPIT_WEB) && (asc17 || lastTwoMoves(MMID::GREEN_LOUSE_SPIT_WEB))) return (MMID::GREEN_LOUSE_BITE);
+                    else  return (MMID::GREEN_LOUSE_SPIT_WEB);
+
+                } else if (lastTwoMoves(MMID::GREEN_LOUSE_BITE)) return (MMID::GREEN_LOUSE_SPIT_WEB);
+                else return (MMID::GREEN_LOUSE_BITE);
+            }
+
+            default:
+                break;
+        }
+        assert(false);
+        return MMID::INVALID;
+    }
+
+    bool Monster::lastMove(MMID moveId) {
+        return moveHistory[0] == moveId;
+    }
+
+    bool Monster::lastTwoMoves(MMID moveId) {
+        return moveHistory[0] == moveId && moveHistory[1] == moveId;
+    }
+
+    bool Monster::firstTurn() {
+        return lastMove(MMID::INVALID);
+    }
 }
 

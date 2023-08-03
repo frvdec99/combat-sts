@@ -41,18 +41,15 @@ namespace StS {
         else return MonsterId::GREEN_LOUSE;
     }
 
-    void MonsterGroup::init(Random &monsterHpRng, Random &miscRng, int ascension, const MonsterEncounter &encounter) {
+    void MonsterGroup::init(Random &monsterHpRng, Random &miscRng, Random& aiRng,
+                            int ascension, const MonsterEncounter &encounter) {
         createMonsters(monsterHpRng, miscRng, ascension, encounter);
+        for (int i = 0; i < monsterCount; ++i) {
+            if (arr[i].id != MonsterId::INVALID) arr[i].rollMove(aiRng, ascension);
+        }
+
 //        for (int i = 0; i < monsterCount; ++i) {
-//            if (arr[i].idx != -1) {
-//                arr[i].rollMove(bc);
-//            }
-//        }
-//
-//        for (int i = 0; i < monsterCount; ++i) {
-//            if (arr[i].idx != -1) {
-//                arr[i].preBattleAction(bc);
-//            }
+//            if (arr[i].id != MonsterId::INVALID) arr[i].preBattleAction(bc);
 //        }
     }
 }

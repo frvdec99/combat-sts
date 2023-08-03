@@ -14,6 +14,7 @@ namespace StS {
         floorNumber = gs.floorNumber;
 
         auto startRandom = Random(seed + floorNumber);
+        aiRng = startRandom;
         monsterHpRng = startRandom;
         shuffleRng = startRandom;
         cardRng = startRandom;
@@ -29,6 +30,6 @@ namespace StS {
         player.curHp = gs.curHp;
         player.cardDrawPerTurn = 5;
 
-        monsters.init(monsterHpRng, miscRng, ascension, monsterInit);
+        monsters.init(monsterHpRng, miscRng, aiRng, ascension, monsterInit);
     }
 }
