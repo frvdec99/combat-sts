@@ -9,4 +9,6 @@ add_executable(combat_sts main.cpp
         src/game/CardContainer.cpp
         src/game/GameState.cpp
         src/game/RelicContainer.cpp
+        src/base/Monster.cpp
+        src/combat/MonsterGroup.cpp
         src/combat/CombatState.cpp)

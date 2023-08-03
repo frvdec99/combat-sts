@@ -7,10 +7,9 @@
 
 #include <cassert>
 #include "const/Monsters.h"
-#include "combat/CombatState.h"
+#include "base/Random.h"
 
 namespace StS {
-    class CombatState;
 
     class Monster {
     public:
@@ -23,10 +22,9 @@ namespace StS {
         Monster() = default;
         Monster(const Monster& rhs) = default;
 
-
         void setRandomHp(Random& rng, bool ascension);
         void initHp(Random& rng, int ascension);
-        void init(CombatState& cs, const MonsterId& monster);
+        void init(Random& monsterHpRng, int ascension, const MonsterId& monster);
     };
 }
 

@@ -7,18 +7,20 @@
 
 #include <array>
 #include "base/Monster.h"
-#include "combat/CombatState.h"
+#include "base/Random.h"
+#include "base/MonsterEncounter.h"
 
 namespace StS {
     class MonsterGroup {
+    public:
         int monsterCount = 0;
         std::array<Monster, 5> arr;
 
-        MonsterId getLouse(Random &rng);
+        static MonsterId getLouse(Random &miscRng);
 
-        void init(CombatState& cs, const MonsterEncounter& encounter);
-        void createMonster(CombatState& cs, const MonsterId& id);
-        void createMonsters(CombatState& cs, const MonsterEncounter& encounter);
+        void init(Random& monsterHpRng, Random& miscRng, int ascension, const MonsterEncounter& encounter);
+        void createMonster(Random& monsterHpRng, int ascension, const MonsterId& id);
+        void createMonsters(Random& monsterHpRng, Random& miscRng, int ascension, const MonsterEncounter& encounter);
     };
 }
 

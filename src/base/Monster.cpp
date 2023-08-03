@@ -116,9 +116,9 @@ namespace StS {
         }
     }
 
-    void Monster::init(CombatState &cs, const MonsterId &monster) {
+    void Monster::init(Random& monsterHpRng, int ascension, const MonsterId &monster) {
         this->id = monster;
-        initHp(cs.monsterHpRng, cs.ascension);
+        initHp(monsterHpRng, ascension);
     }
 }
 

@@ -29,6 +29,6 @@ namespace StS {
         player.curHp = gs.curHp;
         player.cardDrawPerTurn = 5;
 
-        monsters.init(*this, monsterInit);
+        monsters.init(monsterHpRng, miscRng, ascension, monsterInit);
     }
 }

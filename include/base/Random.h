@@ -7,6 +7,8 @@
 #ifndef COMBAT_STS_RANDOM_H
 #define COMBAT_STS_RANDOM_H
 
+#include <algorithm>
+
 namespace java {
 
     class Random {
