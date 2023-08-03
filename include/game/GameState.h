@@ -27,6 +27,9 @@ namespace StS {
         int ascension = 0;
         int floorNumber = 0;
 
+        // random generator
+        Random miscRng;
+
         // player state
         Character character;
         int curHp = 80;
@@ -36,7 +39,7 @@ namespace StS {
         // potion state
         int potionCount = 0;
         int potionCapacity = 0;
-        std::array<Potion, 5> potions;
+        std::array<Potion, 5> potions{};
 
         // relic state
         RelicContainer relics;

@@ -6,7 +6,8 @@
 
 namespace StS {
     GameState::GameState(Character character, std::uint64_t seed, int ascension):
-    seed(seed), character(character), ascension(ascension)
+    seed(seed), character(character), ascension(ascension),
+    miscRng(seed)
     {
         initPlayer();
 

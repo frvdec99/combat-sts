@@ -21,6 +21,7 @@ namespace StS {
         Random monsterHpRng;
         Random cardRng;
         Random shuffleRng;
+        Random miscRng;
 
         int potionCount = 0;
         int potionCapacity = 0;

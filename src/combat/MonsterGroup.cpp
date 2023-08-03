@@ -26,17 +26,34 @@ namespace StS {
 
     void MonsterGroup::createMonsters(CombatState &cs, const MonsterEncounter &encounter) {
         switch (encounter) {
-            case MonsterEncounter::SMALL_SLIMES:
-
             case MonsterEncounter::CULTIST:
                 createMonster(cs, MonsterId::CULTIST);
                 break;
             case MonsterEncounter::JAW_WORM:
                 createMonster(cs, MonsterId::JAW_WORM);
                 break;
+            case MonsterEncounter::SMALL_SLIMES:
+                if (cs.miscRng.randomBoolean()) {
+                    createMonster(cs, MonsterId::SPIKE_SLIME_S);
+                    createMonster(cs, MonsterId::ACID_SLIME_M);
+                } else {
+                    createMonster(cs, MonsterId::ACID_SLIME_S);
+                    createMonster(cs, MonsterId::SPIKE_SLIME_M);
+                }
+                break;
+            case MonsterEncounter::TWO_LOUSE: {
+                createMonster(cs, getLouse(cs.miscRng));
+                createMonster(cs, getLouse(cs.miscRng));
+                break;
+            }
             default:
                 break;
         }
+    }
+
+    MonsterId MonsterGroup::getLouse(Random &rng) {
+        if (rng.randomBoolean()) return MonsterId::RED_LOUSE;
+        else return MonsterId::GREEN_LOUSE;
     }
 }
 

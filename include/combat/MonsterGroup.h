@@ -14,6 +14,8 @@ namespace StS {
         int monsterCount = 0;
         std::array<Monster, 5> arr;
 
+        MonsterId getLouse(Random &rng);
+
         void init(CombatState& cs, const MonsterEncounter& encounter);
         void createMonster(CombatState& cs, const MonsterId& id);
         void createMonsters(CombatState& cs, const MonsterEncounter& encounter);

@@ -17,6 +17,7 @@ namespace StS {
         monsterHpRng = startRandom;
         shuffleRng = startRandom;
         cardRng = startRandom;
+        miscRng = gs.miscRng;
 
         potionCount = gs.potionCount;
         potionCapacity = gs.potionCapacity;
