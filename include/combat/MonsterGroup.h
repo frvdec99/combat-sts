@@ -7,11 +7,16 @@
 
 #include <array>
 #include "base/Monster.h"
+#include "combat/CombatState.h"
 
 namespace StS {
     class MonsterGroup {
         int monsterCount = 0;
         std::array<Monster, 5> arr;
+
+        void init(CombatState& cs, const MonsterEncounter& encounter);
+        void createMonster(CombatState& cs, const MonsterId& id);
+        void createMonsters(CombatState& cs, const MonsterEncounter& encounter);
     };
 }
 

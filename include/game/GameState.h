@@ -12,8 +12,10 @@
 #include <iostream>
 #include "const/Character.h"
 #include "const/Potions.h"
+#include "base/Random.h"
 #include "base/Card.h"
 #include "base/Relic.h"
+#include "base/MonsterEncounter.h"
 #include "game/RelicContainer.h"
 #include "game/CardContainer.h"
 

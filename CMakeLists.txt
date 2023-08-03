@@ -8,4 +8,5 @@ include_directories(include)
 add_executable(combat_sts main.cpp
         src/game/CardContainer.cpp
         src/game/GameState.cpp
-        src/game/RelicContainer.cpp)
+        src/game/RelicContainer.cpp
+        src/combat/CombatState.cpp)
