@@ -6,8 +6,6 @@
 
 namespace StS {
 
-//    void CombatState::init(const GameState &gs) {}
-
     void CombatState::init(const GameState &gs, const MonsterEncounter &monsterInit) {
         seed = gs.seed;
         ascension = gs.ascension;
@@ -31,5 +29,14 @@ namespace StS {
         player.cardDrawPerTurn = 5;
 
         monsters.init(monsterHpRng, miscRng, aiRng, ascension, monsterInit);
+        // TODO fire elite
+
+
+
+    }
+
+    void CombatState::initRelics(const GameState &gs) {
+        player.relicBits0 = gs.relics.relicBits0;
+        player.relicBits1 = gs.relics.relicBits1;
     }
 }

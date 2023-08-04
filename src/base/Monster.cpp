@@ -252,5 +252,45 @@ namespace StS {
     bool Monster::firstTurn() {
         return lastMove(MMID::INVALID);
     }
+
+    void Monster::preCombatAction(Random &monsterHpRng, int ascension) {
+        const bool asc4 = ascension >= 4;
+        const bool asc7 = ascension >= 7;
+        const bool asc9 = ascension >= 9;
+        const bool asc17 = ascension >= 17;
+        const bool asc18 = ascension >= 18;
+        const bool asc19 = ascension >= 19;
+
+        switch (id) {
+            case MonsterId::GREEN_LOUSE:
+            case MonsterId::RED_LOUSE: {
+                int curlUpMin;
+                int curlUpMax;
+                if (asc17) { curlUpMin = 9; curlUpMax = 12;}
+                else if (asc7) { curlUpMin = 4; curlUpMax = 8;}
+                else { curlUpMin = 3; curlUpMax = 7; }
+                buff(MS::CURL_UP, monsterHpRng.random(curlUpMin, curlUpMax));
+                break;
+            }
+            default:
+                assert(false);
+                break;
+        }
+    }
+
+    void Monster::setHasStatus(MS status, bool value) {
+        if (value) statusBits |= (1ULL << (int) status);
+        else statusBits &= ~(1ULL << (int) status);
+    }
+
+    void Monster::buff(MS status, int info) {
+        switch(status) {
+            case MS::CURL_UP:
+                setHasStatus(status, true);
+                statusInfo += info;
+            default:
+                break;
+        }
+    }
 }
 

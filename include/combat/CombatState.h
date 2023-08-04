@@ -36,6 +36,7 @@ namespace StS {
 
 //        void init(const GameState& gs);
         void init(const GameState& gs, const MonsterEncounter& monsterInit);
+        void initRelics(const GameState& gs);
     };
 }
 

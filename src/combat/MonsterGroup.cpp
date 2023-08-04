@@ -48,9 +48,9 @@ namespace StS {
             if (arr[i].id != MonsterId::INVALID) arr[i].rollMove(aiRng, ascension);
         }
 
-//        for (int i = 0; i < monsterCount; ++i) {
-//            if (arr[i].id != MonsterId::INVALID) arr[i].preBattleAction(bc);
-//        }
+        for (int i = 0; i < monsterCount; ++i) {
+            if (arr[i].id != MonsterId::INVALID) arr[i].preCombatAction(monsterHpRng, ascension);
+        }
     }
 }
 

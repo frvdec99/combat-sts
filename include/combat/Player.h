@@ -17,6 +17,10 @@ namespace StS {
         int energy = 0;
         int energyPerTurn = 3;
         int cardDrawPerTurn = 5;
+
+        std::uint64_t relicBits0 = 0;
+        std::uint64_t relicBits1 = 0;
+
     };
 }
 

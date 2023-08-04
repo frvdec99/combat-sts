@@ -8,6 +8,7 @@
 #include <cassert>
 #include "const/Monsters.h"
 #include "const/MonsterMoves.h"
+#include "const/MonsterStatus.h"
 #include "base/Random.h"
 
 namespace StS {
@@ -22,6 +23,9 @@ namespace StS {
 
         int miscInfo = 0;
 
+        std::uint64_t statusBits = 0;
+        int statusInfo = 0;
+
         MMID moveHistory[2] = {MMID::INVALID, MMID::INVALID };
 
         Monster() = default;
@@ -35,11 +39,14 @@ namespace StS {
         MMID getMoveForRoll(Random& aiRng, int ascension);
         void setMove(MMID moveId);
 
-//        void preCombatAction();
+        void preCombatAction(Random& monsterHpRng, int ascension);
 
         inline bool firstTurn();
         inline bool lastMove(MMID moveId);
         inline bool lastTwoMoves(MMID moveId);
+
+        void setHasStatus(MS status, bool value);
+        void buff(MS status, int info);
     };
 }
 
