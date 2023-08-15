@@ -8,6 +8,7 @@
 #include <deque>
 #include "base/MonsterEncounter.h"
 #include "game/GameState.h"
+#include "combat/Actions.h"
 #include "combat/MonsterGroup.h"
 #include "combat/Player.h"
 
@@ -31,12 +32,17 @@ namespace StS {
         MonsterGroup monsters;
         Player player;
 
+        std::deque<Action> actionQueue;
+
         CombatState() = default;
         CombatState(const CombatState &rhs) = default;
 
 //        void init(const GameState& gs);
         void init(const GameState& gs, const MonsterEncounter& monsterInit);
         void initRelics(const GameState& gs);
+
+        void addToBottom(const Action& a);
+        void addToTop(const Action& a);
     };
 }
 

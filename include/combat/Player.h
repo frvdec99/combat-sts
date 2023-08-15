@@ -8,6 +8,7 @@
 #include <map>
 #include "const/Character.h"
 #include "const/PlayerStatus.h"
+#include "const/Relics.h"
 
 namespace StS {
     class Player {
@@ -48,10 +49,18 @@ namespace StS {
         std::uint64_t relicBits0 = 0;
         std::uint64_t relicBits1 = 0;
 
-        void setHasStatus(const PlayerStatus& ps, bool value);
-        bool hasStatus(const PlayerStatus& ps);
+        void setHasRelics(const RelicId &r, bool value);
+        bool hasRelics(const RelicId &r);
 
-        void buff(const PlayerStatus& ps, int info);
+        void setHasStatus(const PlayerStatus &ps, bool value);
+        bool hasStatus(const PlayerStatus &ps);
+
+        void buff(const PlayerStatus &ps, int info);
+        void debuff(const PlayerStatus &ps, int info);
+        void decreaseStatus(const PlayerStatus &ps, int info);
+
+        void heal(int info);
+        void gainEnergy(int info);
 
     };
 }

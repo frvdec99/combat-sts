@@ -12,6 +12,7 @@
 #include <iostream>
 #include "const/Character.h"
 #include "const/Potions.h"
+#include "const/Rooms.h"
 #include "base/Random.h"
 #include "base/Card.h"
 #include "base/Relic.h"
@@ -47,10 +48,15 @@ namespace StS {
         // card state
         CardContainer cards;
 
+        // room state
+        Room curRoom = Room::INVALID;
+        Room lastRoom = Room::INVALID;
+
         GameState(Character character, std::uint64_t seed, int ascensionLevel);
         void initPlayer();
 
         // debug
+        void setRoomState(const Room& cur, const Room& last);
         friend std::ostream &operator<<( std::ostream &output, const GameState &gs);
     };
 }

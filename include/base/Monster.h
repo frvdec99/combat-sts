@@ -26,6 +26,25 @@ namespace StS {
         std::uint64_t statusBits = 0;
         int statusInfo = 0;
 
+        bool isEscaped = false;
+
+        // special status info
+        std::int8_t artifact = 0;
+        std::int8_t blockReturn = 0;
+        std::int8_t choked = 0;
+        std::int8_t corpseExplosion = 0;
+        std::int8_t lockOn = 0;
+        std::int16_t mark = 0;
+        std::int8_t metallicize = 0;
+        std::int8_t platedArmor = 0;
+        std::int8_t poison = 0;
+        std::int8_t regen = 0;
+        std::int8_t shackled = 0;
+
+        int strength = 0;
+        int vulnerable = 0;
+        int weak = 0;
+
         MMID moveHistory[2] = {MMID::INVALID, MMID::INVALID };
 
         Monster() = default;
@@ -47,6 +66,8 @@ namespace StS {
 
         void setHasStatus(MS status, bool value);
         void buff(MS status, int info);
+
+        [[nodiscard]] bool isTargetable() const;
     };
 }
 

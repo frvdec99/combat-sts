@@ -285,12 +285,20 @@ namespace StS {
 
     void Monster::buff(MS status, int info) {
         switch(status) {
+            case MS::STRENGTH:
+                strength += info;
+                break;
             case MS::CURL_UP:
                 setHasStatus(status, true);
                 statusInfo += info;
+                break;
             default:
                 break;
         }
+    }
+
+    bool Monster::isTargetable() const {
+        return curHp <= 0 || isEscaped;
     }
 }
 

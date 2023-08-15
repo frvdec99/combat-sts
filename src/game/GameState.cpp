@@ -69,4 +69,9 @@ namespace StS {
 
         return output;
     }
+
+    void GameState::setRoomState(const Room &cur, const Room &last) {
+        curRoom = cur;
+        lastRoom = last;
+    }
 }
