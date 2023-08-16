@@ -417,6 +417,173 @@ namespace StS {
     static const char* getCardName(const CardId& id) {
         return cardNames[static_cast<int>(id)];
     }
+
+    static constexpr bool isCardInnate(CardId id, bool upgraded=false) {
+        switch (id) {
+            case CardId::BACKSTAB:
+            case CardId::BOOT_SEQUENCE:
+            case CardId::DRAMATIC_ENTRANCE:
+            case CardId::MIND_BLAST:
+            case CardId::WRITHE:
+                return true;
+
+            case CardId::BRUTALITY:
+            case CardId::INFINITE_BLADES:
+            case CardId::AFTER_IMAGE:
+            case CardId::CHILL:
+            case CardId::HELLO_WORLD:
+            case CardId::STORM:
+            case CardId::MACHINE_LEARNING:
+            case CardId::BATTLE_HYMN:
+            case CardId::ALPHA:
+            case CardId::ESTABLISHMENT:
+                return upgraded;
+
+            default:
+                return false;
+        }
+    }
+
+    static constexpr int getEnergyCost(CardId id, bool upgraded) {
+        switch (id) {
+            case CardId::ANGER:
+            case CardId::BACKSTAB:
+            case CardId::BANDAGE_UP:
+            case CardId::BATTLE_TRANCE:
+            case CardId::BERSERK:
+            case CardId::BLIND:
+            case CardId::BLOODLETTING:
+            case CardId::BRUTALITY:
+            case CardId::CLASH:
+            case CardId::DARK_SHACKLES:
+            case CardId::DEEP_BREATH:
+            case CardId::DRAMATIC_ENTRANCE:
+            case CardId::ENLIGHTENMENT:
+            case CardId::FINESSE:
+            case CardId::FLASH_OF_STEEL:
+            case CardId::FLEX:
+            case CardId::FORETHOUGHT:
+            case CardId::GOOD_INSTINCTS:
+            case CardId::IMPATIENCE:
+            case CardId::INSIGHT:
+            case CardId::INTIMIDATE:
+            case CardId::JACK_OF_ALL_TRADES:
+            case CardId::JAX:
+            case CardId::MASTER_OF_STRATEGY:
+            case CardId::MIRACLE:
+            case CardId::OFFERING:
+            case CardId::PANACEA:
+            case CardId::PANACHE:
+            case CardId::PANIC_BUTTON:
+            case CardId::PURITY:
+            case CardId::RECKLESS_CHARGE:
+            case CardId::SADISTIC_NATURE:
+            case CardId::SECRET_TECHNIQUE:
+            case CardId::SECRET_WEAPON:
+            case CardId::SWIFT_STRIKE:
+            case CardId::THINKING_AHEAD:
+            case CardId::VIOLENCE:
+            case CardId::WARCRY:
+                return 0;
+
+            case CardId::DEFEND_BLUE:
+            case CardId::DEFEND_GREEN:
+            case CardId::DEFEND_PURPLE:
+            case CardId::DEFEND_RED:
+            case CardId::DOUBLE_TAP:
+            case CardId::STRIKE_BLUE:
+            case CardId::STRIKE_GREEN:
+            case CardId::STRIKE_PURPLE:
+            case CardId::STRIKE_RED:
+            case CardId::SWORD_BOOMERANG:
+            case CardId::TRIP:
+            case CardId::TRUE_GRIT:
+            case CardId::WILD_STRIKE:
+                return 1;
+
+            case CardId::BASH:
+            case CardId::BETA:
+            case CardId::CARNAGE:
+            case CardId::CHRYSALIS:
+            case CardId::CLOTHESLINE:
+            case CardId::FIEND_FIRE:
+            case CardId::FLAME_BARRIER:
+            case CardId::HAND_OF_GREED:
+            case CardId::HEAVY_BLADE:
+            case CardId::IMMOLATE:
+            case CardId::IMPERVIOUS:
+            case CardId::JUGGERNAUT:
+            case CardId::METAMORPHOSIS:
+            case CardId::PERFECTED_STRIKE:
+            case CardId::REAPER:
+            case CardId::SHOCKWAVE:
+            case CardId::THE_BOMB:
+            case CardId::UPPERCUT:
+            case CardId::SEARING_BLOW:
+            case CardId::SEVER_SOUL:
+                return 2;
+
+            case CardId::BARRICADE:
+            case CardId::CORRUPTION:
+                return upgraded ? 2 : 3;
+
+            case CardId::BLUDGEON:
+            case CardId::OMEGA:
+            case CardId::WRAITH_FORM:
+            case CardId::DEMON_FORM:
+                return 3;
+
+            case CardId::BLOOD_FOR_BLOOD:
+                return upgraded ? 3 : 4;
+
+            case CardId::APOTHEOSIS:
+            case CardId::MAGNETISM:
+            case CardId::MAYHEM:
+            case CardId::MIND_BLAST:
+            case CardId::DARK_EMBRACE:
+                return upgraded ? 1 : 2;
+
+            case CardId::HAVOC:
+            case CardId::SEEING_RED:
+            case CardId::BODY_SLAM:
+            case CardId::EXHUME:
+            case CardId::MADNESS:
+                return upgraded ? 0 : 1;
+
+
+            case CardId::WHIRLWIND:
+            case CardId::TRANSMUTATION:
+            case CardId::MALAISE:
+            case CardId::MULTI_CAST:
+            case CardId::REINFORCED_BODY:
+                return -1;
+
+            case CardId::BURN:
+            case CardId::DAZED:
+            case CardId::VOID:
+            case CardId::WOUND:
+                return -2;
+
+            case CardId::ASCENDERS_BANE:
+            case CardId::CLUMSY:
+            case CardId::DECAY:
+            case CardId::DOUBT:
+            case CardId::INJURY:
+            case CardId::NORMALITY:
+            case CardId::PAIN:
+            case CardId::PARASITE:
+            case CardId::REGRET:
+            case CardId::SHAME:
+            case CardId::WRITHE:
+            case CardId::NECRONOMICURSE:
+            case CardId::CURSE_OF_THE_BELL:
+                return -3;
+
+
+            default:
+                return 1;
+        }
+    }
 }
 
 #endif //COMBAT_STS_CARDS_H

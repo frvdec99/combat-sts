@@ -13,12 +13,16 @@ namespace StS {
     public:
         CardId id;
         bool upgrade;
+        int info;
 
-        Card() { id = CardId::INVALID; upgrade = false; }
+        Card() { id = CardId::INVALID; upgrade = false; info = 0;}
         explicit Card(const CardId& id, bool upgrade = false) {
             this->id = id;
             this->upgrade = upgrade;
+            this->info = 0;
         }
+
+        [[nodiscard]] bool isInnate() const {return isCardInnate(id, upgrade);}
     };
 }
 

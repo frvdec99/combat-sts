@@ -6,6 +6,7 @@
 #define COMBAT_STS_ACTIONS_H
 
 #include <functional>
+#include "combat/CardInstance.h"
 
 namespace StS {
     class CombatState;
@@ -13,7 +14,7 @@ namespace StS {
 
     class Actions {
     public:
-
+        static Action MakeTempCardInHand(CardInstance card, int amount)
     };
 }
 

@@ -16,6 +16,8 @@ namespace StS {
         int size = 0;
         std::array<Card, MAX_SIZE> cards;
 
+        int bottleIdx[3] = {-1, -1, -1};
+
         void add(Card card);
 
         friend std::ostream &operator<<(std::ostream &output, const CardContainer &cc);

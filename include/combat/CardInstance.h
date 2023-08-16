@@ -14,14 +14,17 @@ namespace StS {
         std::int8_t info = 0;
         std::int8_t cost = 0;
         std::int8_t costForTurn = 0;
+        std::int8_t uniqueId = -1;
 
         bool upgraded = false;
         bool freeToPlayOnce = false;
         bool retain = false;
 
         CardInstance() = default;
-        CardInstance(CardId id, bool upgraded = false);
-        CardInstance(const Card &card);
+        explicit CardInstance(CardId id, bool upgraded = false);
+        explicit CardInstance(const Card &card);
+
+        void setUniqueId(int uniqueId);
     };
 }
 
